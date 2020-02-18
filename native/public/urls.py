@@ -12,5 +12,5 @@ urlpatterns = [
     path("test/wsconn", views.wsconn, name="wsconntest"),
 
     # Chat URL
-    # path("chat/<int>")
+    path("chat/<int:thread>", views.open_chat, name="chat")
 ]

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Testing WebSocket connection{% endblock %}
+
+{% block content %}
+    <p>Open your terminal to see if it was accepted.</p>
+    <script>
+    window.onload = function exampleFunction() {
+        let socket = new WebSocket('ws://localhost:8000/');  // NEVER USE WS in production
+        socket.onmessage = event => console.log(event.data);
+        socket.send("ping")
+        // At least on Safari, dev console raises an error, but oh well.
+        // we're not handling all of the ws functionality here anyways.
+        // This was just to test if the websocket could simply connect
+    };
+    </script>
+{% endblock %}

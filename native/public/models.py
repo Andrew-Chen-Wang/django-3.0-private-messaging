@@ -91,5 +91,6 @@ class Message(models.Model):
     # is basically appending to the end of the database
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     message = models.TextField(max_length=918)
+    thread = models.ForeignKey(MessageThread, on_delete=models.SET_NULL, null=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     # You can add a updated field if you wish with auto_now for updating messages. I will not.

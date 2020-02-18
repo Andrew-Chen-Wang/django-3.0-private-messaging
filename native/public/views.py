@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.http import Http404, HttpResponseForbidden, JsonResponse
 
 from .forms import UserCreationFormWithoutUsername
-from .models import User, MessageThread
+from .models import MessageThread
 
 
 def index(request):
@@ -59,6 +58,7 @@ def open_chat(request, thread: int):
             return JsonResponse({"not found": "Create a chat in the admin for this user!"})
         else:
             thread = request.user.in_chat.id
+            return redirect("/chat/" + str(thread))
 
     # Open the thread that user wants to view
     try:
@@ -75,6 +75,7 @@ def open_chat(request, thread: int):
         target_user.get_full_name()
     context = {
         "target_user": target_user,
+        "chat_number": thread.id
     }
     if thread != request.user.in_chat:
         # User can't talk in chat

@@ -11,7 +11,7 @@ We will only use Django 3.0 ~~instead of~~ Django Channels as an experiment.
 
 This is also my first time with async code, so point out some good practices in the issues section in GitHub.
 
-### Setup
+### Setup and Run
 
 This application was written in Python 3.7 and Django 3.0.
 
@@ -27,6 +27,14 @@ Setting up a chat between two users:
 2. Create another user
 3. Create a message thread and add two users
 4. Start the uvicorn workers and login
+
+### How does Django 3.0 work in our context?
+
+Since I've never used async Python for Django and Channels, I'll try my best not to screw up:
+
+Basically, I've set this up so that you load the HTML for a chat synchronously. Using vanilla JS, I've added some scripts that run with the WebSocket. That WebSocket connects with the Django server's ASGI side (which you can find in the project(either native or dependency)/websocket.py).
+
+To plainly sum it up, serve the HTML synchronously. Asynchronously serve your messages with the JS that you loaded with the HTML.
 
 ### Important Notes
 
@@ -62,7 +70,7 @@ Additionally, the chat I implement satisfies the above which is
         - Although it is nice to have something like [Django cachalot](https://github.com/noripyt/django-cachalot) which makes it easier, but still... too many queries perhaps. Will consider if this bool is necessary.
 2. Implement a Django Channels solution along with this to compare speeds.
 3. Add iOS app to communicate with Django.
-    - This means we'd have to add JWS authentication...
+    - This means we'd have to add JWT authentication...
     
 ### Misc Notes / Credits
 
@@ -76,6 +84,10 @@ Note 2: When using uvicorn, it isn't going to work like runserver does. When you
 Note 3: Debugging messages are shown in your terminal/cmd.
 
 Note 4: If I've said anything wrong here (most likely since I'm also just learning with y'all!), please let me know in a GitHub issue and ping me. Good luck learning!
+
+Note 5: Getting the user from the WebSocket came from Django channel's source code: https://github.com/django/channels/blob/master/channels/auth.py
+    - Within a WS scope is the user's session ID
+    - When implementing this for mobile, your header needs to include a JWT token.
 
 ### FAQ
 

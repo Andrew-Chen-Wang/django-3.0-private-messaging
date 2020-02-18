@@ -1,4 +1,4 @@
-from public.socket import connect, disconnect, receive
+from public.socket import handle_connect, handle_disconnect, handle_receive
 
 
 async def websocket_application(scope, receive, send):
@@ -8,11 +8,11 @@ async def websocket_application(scope, receive, send):
         # Each function is located in socket.py to be more clean
 
         if event['type'] == 'websocket.connect':
-            await connect(event, scope, receive, send)
+            await handle_connect(event, scope, receive, send)
 
         if event['type'] == 'websocket.disconnect':
-            await disconnect(event, scope, receive, send)
+            await handle_disconnect(event, scope, receive, send)
             break
 
         if event['type'] == 'websocket.receive':
-            await receive(event, scope, receive, send)
+            await handle_receive(event, scope, receive, send)

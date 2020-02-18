@@ -22,6 +22,12 @@ This application was written in Python 3.7 and Django 3.0.
 3. To run the channels application (also using Django 3.0 since it's officially supported), cd into the `dependency` directory and pip install the requirements.
 4. To see how this runs on iOS, open the Xcode project, run the simulator, and run the server from either step 2 or 3. 
 
+Setting up a chat between two users:
+1. Go to your admin panel (assuming you made a superuser)
+2. Create another user
+3. Create a message thread and add two users
+4. Start the uvicorn workers and login
+
 ### Important Notes
 
 - This project is developed not for some Medium article but for my own test runs as Django slowly migrates (pudum, ccsiiii) to async.
@@ -70,6 +76,14 @@ Note 2: When using uvicorn, it isn't going to work like runserver does. When you
 Note 3: Debugging messages are shown in your terminal/cmd.
 
 Note 4: If I've said anything wrong here (most likely since I'm also just learning with y'all!), please let me know in a GitHub issue and ping me. Good luck learning!
+
+### FAQ
+
+Where did my staticfiles go?
+
+Since you're using a different server, you have to append them yourself during development: https://stackoverflow.com/a/12801140
+
+I've already added them to the global urls.py in both `native` and `dependency`.
 
 ### License
 

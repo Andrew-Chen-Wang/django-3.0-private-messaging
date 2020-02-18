@@ -5,7 +5,7 @@
     <p><i>You are currently looking at the <b>DESKTOP</b> version. This chat application is designed to reflect what mobile and desktop WebSocket workings should do.</i></p>
     <br>
     <p>You are: {{ request.user.get_full_name }}</p>
-    <p>Currently talking with: {{ target_user.get_full_name }}</p>
+    <p>Currently talking with: {{ target_user }}</p>
     <br>
     <div id="messages"></div>
     {% if sendable %}

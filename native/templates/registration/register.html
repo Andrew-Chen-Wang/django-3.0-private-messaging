@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}| Register{% endblock %}
+
+{% block content %}
+    <div>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <table>
+        {% for x in form %}
+            <tr>
+            <td>{{ x.label_tag }}</td>
+            <td>{{ x }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <input type="submit" value="register">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+    </div>
+{% endblock %}

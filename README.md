@@ -13,6 +13,8 @@ However, if you look at the code, it could be of assistance to you. Instead of c
 
 Although the view blocks a user on desktop from infiltrating a chat, someone with basic JS knowledge can understand the autoincrementing schema and access a chat via the websocket itself.
 
+To view message history, you can use a different method: in utils.py of the native directory, there is a method of grabbing the session ID (from django source code and django extensions) and finding out who the user is. In that case, you can basically have another endpoint (like an API endpoint) that you POST request the session ID along with it. 
+
 ---
 
 The purpose of this setup is to test a one-to-one messaging system.

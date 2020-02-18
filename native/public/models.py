@@ -17,7 +17,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     in_chat = models.ForeignKey(
         "MessageThread",
         on_delete=models.SET_NULL,
-        null=True, default=None
+        null=True, default=None,
+        blank=True
     )
 
     is_staff = models.BooleanField(

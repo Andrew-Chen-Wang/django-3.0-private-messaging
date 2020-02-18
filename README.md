@@ -3,6 +3,17 @@
 By: Andrew Chen Wang
 
 Date Created: 8:14:00 2020-02-18
+Date Stopped: 16:01:24 2020-02-18
+
+## Note
+
+Unfortunately, Django 3.0 doesn't support database_sync_to_async like Django Channels, so the experiment must stop on my part.
+
+However, if you look at the code, it could be of assistance to you. Instead of chats being the MessageThread id, you can make a huge number in the form of characters (with Django IP throttling) that represents the MessageThread rather than autoincrement.
+
+Although the view blocks a user on desktop from infiltrating a chat, someone with basic JS knowledge can understand the autoincrementing schema and access a chat via the websocket itself.
+
+---
 
 The purpose of this setup is to test a one-to-one messaging system.
 

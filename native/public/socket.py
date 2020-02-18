@@ -6,6 +6,7 @@ websocket event.
 """
 from .utils import get_user
 from .models import MessageThread, Message
+from django.contrib.auth.models import AnonymousUser
 
 
 async def handle_connect(event, scope, receive, send):
@@ -27,16 +28,19 @@ async def handle_receive(event, scope, receive, send):
     When a user connects, we need to identify which chat they're in.
     Then, send the message to that chat.
     """
-    user = get_user(scope)
+    # user = await get_user(scope)
     # In case user tries to do something...
-    if user.in_chat is None:
-        return
+    # if user == AnonymousUser():
+    #     return
+    # elif user.in_chat is None:
+    #     return
     # Therefore, even if someone does try to infiltrate a chat...
     # They'll be sending any troll message to their current chat...
-    thread = user.in_chat
+    # thread = user.in_chat
+    # from asgiref.sync import sync_to_async
 
     await send({
         "type": "websocket.send",
         "text": event["text"]
     })
-    Message.objects.create(message=event["text"], thread=thread)
+    # sync_to_async(Message.objects.create(message=event["text"], thread=thread))

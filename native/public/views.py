@@ -3,9 +3,14 @@ from django.conf import settings
 from django.contrib.auth import authenticate, login
 
 from .forms import UserCreationFormWithoutUsername
+from .models import User
 
 
 def index(request):
+    user = request.user
+    if user.is_authenticated:
+        if user.in_chat is not None:
+            redirect("/chat")
     return render(request, "index.html")
 
 
@@ -29,3 +34,11 @@ def register(request):
     else:
         form = UserCreationFormWithoutUsername()
         return render(request, "registration/register.html", {"form": form})
+
+
+# Testing plain JS WebSocket connection
+def wsconn(request):
+    # THIS IS NOT THE ASYNC CODE.
+    # For the async code, go to socket.py
+    return render(request, "misc/testingwsconn.html")
+

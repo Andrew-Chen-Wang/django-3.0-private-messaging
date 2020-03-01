@@ -1,9 +1,18 @@
-# Django One-to-One Messaging
+# Django 3.0 One-to-One Messaging
 
 By: Andrew Chen Wang
 
 Date Created: 8:14:00 2020-02-18
 Date Stopped: 16:01:24 2020-02-18
+Edited: 20:55:52 2020-02-29
+
+### Important Edit
+
+For those looking into how to do this, I have successfully done it for a private necessity. Unfortunately, I'm bound from sharing the code but the idea can still be spread. Inspired by wanting a cached JWT authentication, the current user needs to first go to a view to to get a "identification_tag" which is saved in your cache (like redis). Make sure you cryptographically sign this. Next, your user needs to connect to the websocket (on web, HTTP303 redirect the user; on mobile, get the id and save it. Then connect using a websocket library like starscream for iOS).
+
+On websocket connection, use the identification to correctly connect the user to a chat. That chat should have a path that only works with the assigned cryptographic identifications for the two users. You check via the cache in the on connection scope.
+
+Confusing? I know, but I legally can't say too much. Good luck!
 
 ## Note
 

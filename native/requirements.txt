@@ -6,6 +6,6 @@ h11==0.9.0
 httptools==0.1.1
 pytz==2019.3
 sqlparse==0.3.0
-uvicorn==0.11.3
+uvicorn==0.11.7
 uvloop==0.14.0
 websockets==8.1
